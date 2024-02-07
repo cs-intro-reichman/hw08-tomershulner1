@@ -59,6 +59,7 @@ class PlayList {
             return;
         }
         tracks[size - 1] = null;
+        size -= 1;
     }
     
     /** Returns the total duration (in seconds) of all the tracks in this list.*/
@@ -116,7 +117,7 @@ class PlayList {
             tracks[i - 1] = tracks[i];
         }
         tracks[size] = null;
-        size += 1;
+        size -= 1;
     }
 
     /** Removes the first track that has the given title from this list.
@@ -181,8 +182,12 @@ class PlayList {
      *  rather than returning a new, sorted playlist, the method sorts
      *  the list on which it was called (this list). */
     public void sortedInPlace() {
-        // Uses the selection sort algorithm,  
-        // calling the minIndex method in each iteration.
-        //// replace this statement with your code
+        for (int i = 0; i < size - 1; i++) {
+            int current_min = minIndex(i);
+            Track first_track = tracks[i];
+            // make the swap
+            tracks[i] = getTrack(current_min);
+            tracks[current_min] = first_track;
+        }
     }
 }
