@@ -97,8 +97,8 @@ class PlayList {
             return true;
         }
         // Move every track to the next spot in the playlist
-        for(int i = index; i < size - 1; i++) {
-            tracks[i + 1] = tracks[i];
+        for(int i = size; i > index; i--) {
+            tracks[i] = tracks[i - 1];
         }
         tracks[index] = track; // Insert the new track 
         size += 1;
@@ -113,10 +113,10 @@ class PlayList {
             return;
         }
         tracks[index] = null;
-        for (int i = index + 1; i < size - 1; i++) { 
+        for (int i = index + 1; i < size; i++) { 
             tracks[i - 1] = tracks[i];
         }
-        tracks[size] = null;
+        tracks[size - 1] = null;
         size -= 1;
     }
 
@@ -129,10 +129,7 @@ class PlayList {
 
     /** Removes the first track from this list. If the list is empty, does nothing. */
     public void removeFirst() {
-        for(int i = 0; i < size - 1; i++) {
-            tracks[i] = tracks[i + 1];
-        }
-        tracks[size - 1] = null;
+        remove(0);
     }
     
     /** Adds all the tracks in the other list to the end of this list. 

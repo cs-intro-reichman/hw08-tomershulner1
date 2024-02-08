@@ -42,6 +42,10 @@ class Track {
     private String formattedDuration(int totalSeconds) {
         int minutes = totalSeconds / 60;
         int seconds = totalSeconds % 60;
-        return (minutes + ":" + seconds);
+        String str_seconds = "" + seconds;
+        if (seconds < 10) {
+            str_seconds = "0" + seconds;
+        }
+        return (minutes + ":" + str_seconds);
     }
 }
